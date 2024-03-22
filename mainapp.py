@@ -19,7 +19,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def home():
-   return render_template('index.html',data="hehe")
+   return render_template('index.html')
 
 @app.route("/upload", methods=['POST'])
 def uploadFiles():
@@ -30,10 +30,7 @@ def uploadFiles():
     file = request.files['fname']
 
     if file and allowed_file(file.filename):
-        #filename = secure_filename(file.filename)
 
-        #generating random filename.csv
-        #filename = secrets.token_hex(15)+".csv"
         filename = file.filename
 
         # init the fullpath variable
@@ -46,10 +43,9 @@ def uploadFiles():
         result = processCSV(fullpath)
 
         # return data to client
-        return {'status': "ok","average": result}, 200
+        return render_template('index.html',data=result)
 
 def processCSV(path):
-    #csv = np.genfromtxt(path, delimiter=',' , names=True)
     df = pd.read_csv(path,sep=',')
     return df.loc[:,'Salary'].mean()
 
