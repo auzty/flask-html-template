@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Upload</title>
+</head>
+<body>
+<h1>Upload File To Get Average Result {{ data }}</h1>
+<form name="uploadform" action="/upload" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+  <input type="file" name="fname" accept=".csv , text/csv">
+  <input type="submit" value="send">
+</form>
+
+</body>
+<script>
+  function validateForm() {
+  var x = document.forms["uploadform"]["fname"].value;
+  if (x == "") {
+    alert("file must be choosen");
+    return false;
+  }
+}
+</script>
+</html>
