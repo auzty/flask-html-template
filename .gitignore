@@ -1,2 +1,3 @@
 ecosystem.config.js
 .pyenv
+tmp/*.csv
